@@ -1,36 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaGithub } from "react-icons/fa";
+import { FaInstagram, FaGithub, FaWhatsapp } from "react-icons/fa";
 
-/* CONTAINER UTAMA */
+/* ANIMATION SETTING */
 const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
+    transition: { staggerChildren: 0.15 },
   },
 };
 
-/* ITEM */
 const item = {
   hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
     y: 0,
     transition: { duration: 0.5, ease: "easeOut" },
-  },
-};
-
-/* ABOUT ME CONTAINER */
-const aboutContainer = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.25,
-    },
   },
 };
 
@@ -48,6 +35,7 @@ export default function Home() {
           animate="show"
           className="relative bg-[#151515] rounded-2xl p-8 text-center shadow-xl"
         >
+
           {/* FOTO */}
           <motion.img
             variants={item}
@@ -57,10 +45,7 @@ export default function Home() {
           />
 
           {/* NAMA */}
-          <motion.h1
-            variants={item}
-            className="text-2xl font-bold text-white mt-4"
-          >
+          <motion.h1 variants={item} className="text-2xl font-bold text-white mt-4">
             Gusnara
           </motion.h1>
 
@@ -69,8 +54,16 @@ export default function Home() {
             Junior Web Developer
           </motion.p>
 
-          {/* GITHUB */}
-          <motion.div variants={item} className="flex justify-center mt-5">
+          {/* SOSIAL ICON */}
+          <motion.div variants={item} className="flex justify-center gap-5 mt-5">
+            <a
+              href="https://instagram.com/gussnarraa_"
+              target="_blank"
+              className="w-11 h-11 flex items-center justify-center rounded-full bg-[#1f1f1f] text-pink-500 hover:bg-pink-500 hover:text-black hover:scale-110 transition text-xl"
+            >
+              <FaInstagram />
+            </a>
+
             <a
               href="https://github.com/GUSNARA66"
               target="_blank"
@@ -78,30 +71,22 @@ export default function Home() {
             >
               <FaGithub />
             </a>
+
+            <a
+              href="https://wa.me/6285810564284"
+              target="_blank"
+              className="w-11 h-11 flex items-center justify-center rounded-full bg-[#1f1f1f] text-green-500 hover:bg-green-500 hover:text-black hover:scale-110 transition text-xl"
+            >
+              <FaWhatsapp />
+            </a>
           </motion.div>
 
           {/* ABOUT ME */}
-          <motion.div
-            variants={aboutContainer}
-            initial="hidden"
-            animate="show"
-            className="text-gray-500 text-sm mt-5 leading-relaxed space-y-2"
-          >
-            <motion.p variants={item}>
-              I am a junior web developer who enjoys building clean and modern websites.
-            </motion.p>
-
-            <motion.p variants={item}>
-              I am currently learning and improving my skills in Next.js, React, and Tailwind CSS.
-            </motion.p>
-
-            <motion.p variants={item}>
-              I like turning simple ideas into functional and responsive web interfaces.
-            </motion.p>
-
-            <motion.p variants={item}>
-              I am eager to learn new technologies and grow as a web developer.
-            </motion.p>
+          <motion.div variants={item} className="text-gray-500 text-sm mt-5 leading-relaxed space-y-2">
+            <p>I am a junior web developer who enjoys building clean and modern websites.</p>
+            <p>I am currently learning and improving my skills in Next.js, React, and Tailwind CSS.</p>
+            <p>I like turning simple ideas into functional and responsive web interfaces.</p>
+            <p>I am eager to learn new technologies and grow as a web developer.</p>
           </motion.div>
 
           {/* BUTTON */}
@@ -109,7 +94,7 @@ export default function Home() {
             <a
               href="/cv.pdf"
               target="_blank"
-              className="w-full py-2 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition text-center"
+              className="w-full py-2 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition"
             >
               View CV
             </a>
@@ -117,14 +102,14 @@ export default function Home() {
             <a
               href="/cv.pdf"
               download
-              className="w-full py-2 rounded-lg border border-gray-700 text-white hover:bg-gray-800 transition text-center"
+              className="w-full py-2 rounded-lg border border-gray-700 text-white hover:bg-gray-800 transition"
             >
               Download CV
             </a>
 
             <a
               href="mailto:gnara8817@gmail.com?subject=Portfolio%20Contact"
-              className="w-full py-2 rounded-lg border border-gray-700 text-white hover:bg-gray-800 transition text-center"
+              className="w-full py-2 rounded-lg border border-gray-700 text-white hover:bg-gray-800 transition"
             >
               Email Me
             </a>
@@ -132,7 +117,7 @@ export default function Home() {
 
           {/* PROJECT */}
           <motion.div variants={item} className="mt-8 text-left">
-            <h2 className="text-white font-semibold mb-3">Projects</h2>
+            <h2 className="text-white font-semibold mb-3">Project</h2>
 
             <a
               href="https://github.com/GUSNARA66"
@@ -141,10 +126,11 @@ export default function Home() {
             >
               <h3 className="text-white font-medium">Portfolio Website</h3>
               <p className="text-gray-500 text-sm">
-                Personal portfolio built with Next.js & Tailwind CSS.
+                Built with Next.js & Tailwind CSS.
               </p>
             </a>
           </motion.div>
+
         </motion.div>
       </div>
     </main>
