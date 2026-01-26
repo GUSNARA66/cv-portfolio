@@ -45,7 +45,10 @@ export default function Home() {
           />
 
           {/* NAMA */}
-          <motion.h1 variants={item} className="text-2xl font-bold text-white mt-4">
+          <motion.h1
+            variants={item}
+            className="text-2xl font-bold text-white mt-4"
+          >
             Gusnara
           </motion.h1>
 
@@ -54,7 +57,7 @@ export default function Home() {
             Junior Web Developer
           </motion.p>
 
-          {/* SOSIAL */}
+          {/* SOSIAL ICON */}
           <motion.div variants={item} className="flex justify-center gap-5 mt-5">
             <a
               href="https://instagram.com/gussnarraa_"
@@ -82,10 +85,14 @@ export default function Home() {
           </motion.div>
 
           {/* ABOUT ME */}
-          <motion.p variants={item} className="text-gray-500 text-sm mt-5 leading-relaxed">
-            I am a junior web developer who enjoys building clean and modern websites.
-            I am currently learning and improving my skills in Next.js, React, and Tailwind CSS.
-            I like turning simple ideas into functional and responsive web interfaces.
+          <motion.p
+            variants={item}
+            className="text-gray-500 text-sm mt-5 leading-relaxed"
+          >
+            I am a junior web developer who enjoys building clean and modern
+            websites. I am currently learning and improving my skills in
+            Next.js, React, and Tailwind CSS. I like turning simple ideas into
+            functional and responsive web interfaces.
           </motion.p>
 
           {/* BUTTON */}
@@ -93,7 +100,7 @@ export default function Home() {
             <a
               href="/cv.pdf"
               target="_blank"
-              className="w-full py-2 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition"
+              className="w-full py-2 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition text-center"
             >
               View CV
             </a>
@@ -101,17 +108,16 @@ export default function Home() {
             <a
               href="/cv.pdf"
               download
-              className="w-full py-2 rounded-lg border border-gray-700 text-white hover:bg-gray-800 transition"
+              className="w-full py-2 rounded-lg border border-gray-700 text-white hover:bg-gray-800 transition text-center"
             >
               Download CV
             </a>
 
             <a
-              href="https://instagram.com/gussnarraa_"
-              target="_blank"
-              className="w-full py-2 rounded-lg border border-gray-700 text-white hover:bg-gray-800 transition"
+              href="mailto:gnara8817@gmail.com?subject=Portfolio%20Contact&body=Halo%20Gusnara,%0A%0ASaya%20melihat%20portfolio%20Anda%20dan%20ingin%20menghubungi."
+              className="w-full py-2 rounded-lg border border-gray-700 text-white hover:bg-gray-800 transition text-center"
             >
-              Contact via Instagram
+              Email Me
             </a>
           </motion.div>
 
@@ -125,7 +131,9 @@ export default function Home() {
                 target="_blank"
                 className="block p-4 rounded-xl bg-[#1c1c1c] hover:bg-[#232323] hover:scale-[1.03] transition"
               >
-                <h3 className="text-white font-medium">Portfolio Website</h3>
+                <h3 className="text-white font-medium">
+                  Portfolio Website
+                </h3>
                 <p className="text-gray-500 text-sm">
                   Personal portfolio with Next.js & Tailwind CSS.
                 </p>
