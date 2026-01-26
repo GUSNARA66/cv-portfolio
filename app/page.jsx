@@ -122,36 +122,23 @@ export default function Home() {
           </motion.div>
 
           {/* PROJECTS */}
-          <motion.div variants={item} className="mt-8 text-left">
-            <h2 className="text-white font-semibold mb-3">Projects</h2>
+<motion.div variants={item} className="mt-8 text-left">
+  <h2 className="text-white font-semibold mb-3">Projects</h2>
 
-            <div className="space-y-3">
-              <a
-                href="https://github.com/GUSNARA66"
-                target="_blank"
-                className="block p-4 rounded-xl bg-[#1c1c1c] hover:bg-[#232323] hover:scale-[1.03] transition"
-              >
-                <h3 className="text-white font-medium">
-                  Portfolio Website
-                </h3>
-                <p className="text-gray-500 text-sm">
-                  Personal portfolio with Next.js & Tailwind CSS.
-                </p>
-              </a>
-
-              <a
-                href="https://github.com/GUSNARA66"
-                target="_blank"
-                className="block p-4 rounded-xl bg-[#1c1c1c] hover:bg-[#232323] hover:scale-[1.03] transition"
-              >
-                <h3 className="text-white font-medium">Landing Page</h3>
-                <p className="text-gray-500 text-sm">
-                  Responsive landing page design.
-                </p>
-              </a>
-            </div>
-          </motion.div>
-        </motion.div>
+  <div className="space-y-3">
+    <a
+      href="https://github.com/GUSNARA66"
+      target="_blank"
+      className="block p-4 rounded-xl bg-[#1c1c1c] hover:bg-[#232323] hover:scale-[1.03] transition"
+    >
+      <h3 className="text-white font-medium">Portfolio Website</h3>
+      <p className="text-gray-500 text-sm">
+        Personal portfolio built with Next.js & Tailwind CSS.
+      </p>
+    </a>
+  </div>
+</motion.div>
+  </motion.div>
       </div>
     </main>
   );
