@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaInstagram, FaGithub, FaWhatsapp } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 
+/* CONTAINER UTAMA */
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -13,12 +14,23 @@ const container = {
   },
 };
 
+/* ITEM */
 const item = {
   hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
     y: 0,
     transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
+
+/* ABOUT ME CONTAINER */
+const aboutContainer = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.25,
+    },
   },
 };
 
@@ -57,16 +69,8 @@ export default function Home() {
             Junior Web Developer
           </motion.p>
 
-          {/* SOSIAL ICON */}
-          <motion.div variants={item} className="flex justify-center gap-5 mt-5">
-            <a
-              href="https://instagram.com/gussnarraa_"
-              target="_blank"
-              className="w-11 h-11 flex items-center justify-center rounded-full bg-[#1f1f1f] text-pink-500 hover:bg-pink-500 hover:text-black hover:scale-110 transition text-xl"
-            >
-              <FaInstagram />
-            </a>
-
+          {/* GITHUB */}
+          <motion.div variants={item} className="flex justify-center mt-5">
             <a
               href="https://github.com/GUSNARA66"
               target="_blank"
@@ -74,26 +78,31 @@ export default function Home() {
             >
               <FaGithub />
             </a>
-
-            <a
-              href="https://wa.me/6285810564284"
-              target="_blank"
-              className="w-11 h-11 flex items-center justify-center rounded-full bg-[#1f1f1f] text-green-500 hover:bg-green-500 hover:text-black hover:scale-110 transition text-xl"
-            >
-              <FaWhatsapp />
-            </a>
           </motion.div>
 
           {/* ABOUT ME */}
-          <motion.p
-            variants={item}
-            className="text-gray-500 text-sm mt-5 leading-relaxed"
+          <motion.div
+            variants={aboutContainer}
+            initial="hidden"
+            animate="show"
+            className="text-gray-500 text-sm mt-5 leading-relaxed space-y-2"
           >
-            I am a junior web developer who enjoys building clean and modern
-            websites. I am currently learning and improving my skills in
-            Next.js, React, and Tailwind CSS. I like turning simple ideas into
-            functional and responsive web interfaces.
-          </motion.p>
+            <motion.p variants={item}>
+              I am a junior web developer who enjoys building clean and modern websites.
+            </motion.p>
+
+            <motion.p variants={item}>
+              I am currently learning and improving my skills in Next.js, React, and Tailwind CSS.
+            </motion.p>
+
+            <motion.p variants={item}>
+              I like turning simple ideas into functional and responsive web interfaces.
+            </motion.p>
+
+            <motion.p variants={item}>
+              I am eager to learn new technologies and grow as a web developer.
+            </motion.p>
+          </motion.div>
 
           {/* BUTTON */}
           <motion.div variants={item} className="mt-6 flex flex-col gap-3">
@@ -114,31 +123,29 @@ export default function Home() {
             </a>
 
             <a
-              href="mailto:gnara8817@gmail.com?subject=Portfolio%20Contact&body=Halo%20Gusnara,%0A%0ASaya%20melihat%20portfolio%20Anda%20dan%20ingin%20menghubungi."
+              href="mailto:gnara8817@gmail.com?subject=Portfolio%20Contact"
               className="w-full py-2 rounded-lg border border-gray-700 text-white hover:bg-gray-800 transition text-center"
             >
               Email Me
             </a>
           </motion.div>
 
-          {/* PROJECTS */}
-<motion.div variants={item} className="mt-8 text-left">
-  <h2 className="text-white font-semibold mb-3">Projects</h2>
+          {/* PROJECT */}
+          <motion.div variants={item} className="mt-8 text-left">
+            <h2 className="text-white font-semibold mb-3">Projects</h2>
 
-  <div className="space-y-3">
-    <a
-      href="https://github.com/GUSNARA66"
-      target="_blank"
-      className="block p-4 rounded-xl bg-[#1c1c1c] hover:bg-[#232323] hover:scale-[1.03] transition"
-    >
-      <h3 className="text-white font-medium">Portfolio Website</h3>
-      <p className="text-gray-500 text-sm">
-        Personal portfolio built with Next.js & Tailwind CSS.
-      </p>
-    </a>
-  </div>
-</motion.div>
-  </motion.div>
+            <a
+              href="https://github.com/GUSNARA66"
+              target="_blank"
+              className="block p-4 rounded-xl bg-[#1c1c1c] hover:bg-[#232323] hover:scale-[1.03] transition"
+            >
+              <h3 className="text-white font-medium">Portfolio Website</h3>
+              <p className="text-gray-500 text-sm">
+                Personal portfolio built with Next.js & Tailwind CSS.
+              </p>
+            </a>
+          </motion.div>
+        </motion.div>
       </div>
     </main>
   );
