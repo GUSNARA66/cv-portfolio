@@ -1,14 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaInstagram, FaGithub, FaWhatsapp } from "react-icons/fa";
 
-/* ANIMATION SETTING */
 const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 },
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.2,
+    },
   },
 };
 
@@ -17,16 +20,36 @@ const item = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
+    transition: { duration: 0.6, ease: "easeOut" },
   },
 };
 
 export default function Home() {
-  return (
-    <main className="min-h-screen bg-gradient-to-br from-black via-[#0f0f0f] to-black flex items-center justify-center px-4">
-      <div className="relative w-full max-w-md">
+  const [pos, setPos] = useState({ x: 50, y: 50 });
 
-        {/* GLOW */}
+  return (
+    <main
+      onMouseMove={(e) =>
+        setPos({
+          x: (e.clientX / window.innerWidth) * 100,
+          y: (e.clientY / window.innerHeight) * 100,
+        })
+      }
+      className="min-h-screen bg-black flex items-center justify-center px-4 relative overflow-hidden"
+    >
+      {/* FOLLOW GLOW */}
+      <div
+        className="absolute w-96 h-96 rounded-full blur-3xl opacity-20 pointer-events-none transition-all duration-300"
+        style={{
+          background: "radial-gradient(circle, #ec4899, transparent 60%)",
+          left: `${pos.x}%`,
+          top: `${pos.y}%`,
+          transform: "translate(-50%, -50%)",
+        }}
+      />
+
+      <div className="relative w-full max-w-md">
+        {/* CARD GLOW */}
         <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 opacity-20 blur"></div>
 
         <motion.div
@@ -35,7 +58,6 @@ export default function Home() {
           animate="show"
           className="relative bg-[#151515] rounded-2xl p-8 text-center shadow-xl"
         >
-
           {/* FOTO */}
           <motion.img
             variants={item}
@@ -54,7 +76,7 @@ export default function Home() {
             Junior Web Developer
           </motion.p>
 
-          {/* SOSIAL ICON */}
+          {/* SOSIAL */}
           <motion.div variants={item} className="flex justify-center gap-5 mt-5">
             <a
               href="https://instagram.com/gussnarraa_"
@@ -81,12 +103,20 @@ export default function Home() {
             </a>
           </motion.div>
 
-          {/* ABOUT ME */}
-          <motion.div variants={item} className="text-gray-500 text-sm mt-5 leading-relaxed space-y-2">
-            <p>I am a junior web developer who enjoys building clean and modern websites.</p>
-            <p>I am currently learning and improving my skills in Next.js, React, and Tailwind CSS.</p>
-            <p>I like turning simple ideas into functional and responsive web interfaces.</p>
-            <p>I am eager to learn new technologies and grow as a web developer.</p>
+          {/* ABOUT */}
+          <motion.div variants={container} className="text-gray-500 text-sm mt-5 space-y-2 leading-relaxed">
+            <motion.p variants={item}>
+              I am a junior web developer who enjoys building clean and modern websites.
+            </motion.p>
+            <motion.p variants={item}>
+              I am currently learning and improving my skills in Next.js, React, and Tailwind CSS.
+            </motion.p>
+            <motion.p variants={item}>
+              I like turning simple ideas into functional and responsive web interfaces.
+            </motion.p>
+            <motion.p variants={item}>
+              I am eager to learn new technologies and grow as a web developer.
+            </motion.p>
           </motion.div>
 
           {/* BUTTON */}
@@ -117,8 +147,7 @@ export default function Home() {
 
           {/* PROJECT */}
           <motion.div variants={item} className="mt-8 text-left">
-            <h2 className="text-white font-semibold mb-3">Project</h2>
-
+            <h2 className="text-white font-semibold mb-3">Projects</h2>
             <a
               href="https://github.com/GUSNARA66"
               target="_blank"
@@ -126,11 +155,10 @@ export default function Home() {
             >
               <h3 className="text-white font-medium">Portfolio Website</h3>
               <p className="text-gray-500 text-sm">
-                Built with Next.js & Tailwind CSS.
+                Personal portfolio built with Next.js & Tailwind CSS.
               </p>
             </a>
           </motion.div>
-
         </motion.div>
       </div>
     </main>
