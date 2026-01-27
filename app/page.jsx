@@ -1,91 +1,139 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaInstagram, FaGithub, FaWhatsapp } from "react-icons/fa";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i = 1) => ({
+/* ANIMATION CONFIG */
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 12 },
+  show: {
     opacity: 1,
     y: 0,
     transition: {
-      delay: i * 0.15,
-      duration: 0.6,
-      ease: "easeOut",
+      duration: 0.45,
+      ease: "easeInOut",
     },
-  }),
+  },
 };
 
 export default function Home() {
+  const [showIntro, setShowIntro] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowIntro(false);
+    }, 2200);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <main className="min-h-screen bg-black text-white px-6 py-20">
-      {/* CV UTAMA */}
-      <section className="max-w-xl mx-auto">
-        <motion.h1
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={1}
-          className="text-3xl font-bold"
-        >
-          Hi, I’m Gus Nara 👋
-        </motion.h1>
-
-        <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={2}
-          className="text-gray-400 mt-3"
-        >
-          Junior Web Developer focused on modern UI and clean code.
-        </motion.p>
-
-        <motion.a
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={3}
-          href="mailto:emailkamu@gmail.com"
-          className="inline-block mt-6 px-6 py-3 bg-white text-black rounded-xl font-medium hover:scale-105 transition"
-        >
-          Email Me
-        </motion.a>
-      </section>
-
-      {/* PROJECT */}
-      <section className="max-w-xl mx-auto mt-24">
-        <motion.h2
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={1}
-          className="text-2xl font-semibold"
-        >
-          Projects
-        </motion.h2>
-
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={2}
-          className="mt-6 space-y-4"
-        >
-          <div className="p-5 rounded-xl bg-zinc-900 hover:bg-zinc-800 transition">
-            <h3 className="font-medium">CV Website</h3>
-            <p className="text-sm text-gray-400">
-              Personal CV built with Next.js & Tailwind CSS
+    <main className="min-h-screen bg-black flex items-center justify-center px-4 overflow-hidden">
+      <AnimatePresence mode="wait">
+        {showIntro ? (
+          /* INTRO */
+          <motion.div
+            key="intro"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="text-center"
+          >
+            <h1 className="text-white text-3xl md:text-4xl font-bold">
+              Hi, welcome to my portfolio 👋
+            </h1>
+            <p className="text-gray-400 mt-2">
+              I’m Gusnara, Junior Web Developer
             </p>
-          </div>
+          </motion.div>
+        ) : (
+          /* MAIN CARD */
+          <motion.div
+            key="content"
+            variants={container}
+            initial="hidden"
+            animate="show"
+            className="w-full max-w-md"
+          >
+            <div className="relative bg-[#151515] rounded-2xl p-8 text-center shadow-xl">
 
-          <div className="p-5 rounded-xl bg-zinc-900 hover:bg-zinc-800 transition">
-            <h3 className="font-medium">Landing Page</h3>
-            <p className="text-sm text-gray-400">
-              Simple landing page with smooth animation
-            </p>
-          </div>
-        </motion.div>
-      </section>
+              <motion.img
+                variants={item}
+                src="/profile.jpg"
+                alt="Profile"
+                className="w-28 h-28 mx-auto rounded-full object-cover border-4 border-gray-700"
+              />
+
+              <motion.h1 variants={item} className="text-2xl font-bold text-white mt-4">
+                Gusnara
+              </motion.h1>
+
+              <motion.p variants={item} className="text-gray-400 mt-1">
+                Junior Web Developer
+              </motion.p>
+
+              <motion.div variants={item} className="flex justify-center gap-5 mt-5">
+                <a href="https://instagram.com/gussnarraa_" target="_blank" className="text-pink-500 text-xl hover:scale-110 transition">
+                  <FaInstagram />
+                </a>
+                <a href="https://github.com/GUSNARA66" target="_blank" className="text-white text-xl hover:scale-110 transition">
+                  <FaGithub />
+                </a>
+                <a href="https://wa.me/6285810564284" target="_blank" className="text-green-500 text-xl hover:scale-110 transition">
+                  <FaWhatsapp />
+                </a>
+              </motion.div>
+
+              <motion.p variants={item} className="text-gray-500 text-sm mt-5 leading-relaxed">
+                I am a junior web developer who enjoys building clean and modern websites.
+                I am currently learning and improving my skills in Next.js, React, and Tailwind CSS.
+                I like turning simple ideas into functional and responsive web interfaces.
+                I am eager to learn new technologies and grow as a web developer.
+              </motion.p>
+
+             <motion.div variants={item} className="mt-6 flex flex-col gap-3">
+  {/* VIEW CV */}
+  <a
+    href="/cv.pdf"
+    target="_blank"
+    className="py-2 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition"
+  >
+    View CV
+  </a>
+
+  {/* DOWNLOAD CV */}
+  <a
+    href="/cv.pdf"
+    download
+    className="py-2 rounded-lg border border-gray-700 text-white hover:bg-gray-800 transition"
+  >
+    Download CV
+  </a>
+
+  {/* EMAIL */}
+  <a
+    href="mailto:gnara8817@gmail.com?subject=Portfolio%20Contact"
+    className="py-2 rounded-lg border border-gray-700 text-white hover:bg-gray-800 transition"
+  >
+    Email Me
+  </a>
+</motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
