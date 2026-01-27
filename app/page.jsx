@@ -21,22 +21,38 @@ const item = {
   show: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.45,
-      ease: "easeInOut",
-    },
+    transition: { duration: 0.45, ease: "easeInOut" },
   },
 };
 
 export default function Home() {
+  const fullText = "Hi, welcome to my portfolio 👋";
+  const [typedText, setTypedText] = useState("");
   const [showIntro, setShowIntro] = useState(true);
 
+  /* TYPEWRITER EFFECT (FIXED) */
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowIntro(false);
-    }, 2200);
-    return () => clearTimeout(timer);
-  }, []);
+  let index = 0;
+  setTypedText("");
+
+  const typing = setInterval(() => {
+    if (index <= fullText.length) {
+      setTypedText(fullText.slice(0, index));
+      index++;
+    } else {
+      clearInterval(typing);
+    }
+  }, 70);
+
+  const timer = setTimeout(() => {
+    setShowIntro(false);
+  }, 2600);
+
+  return () => {
+    clearInterval(typing);
+    clearTimeout(timer);
+  };
+}, []);
 
   return (
     <main className="min-h-screen bg-black flex items-center justify-center px-4 overflow-hidden">
@@ -48,11 +64,12 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
+            transition={{ duration: 0.8 }}
             className="text-center"
           >
             <h1 className="text-white text-3xl md:text-4xl font-bold">
-              Hi, welcome to my portfolio 👋
+              {typedText}
+              <span className="animate-pulse">|</span>
             </h1>
             <p className="text-gray-400 mt-2">
               I’m Gusnara, Junior Web Developer
@@ -67,7 +84,7 @@ export default function Home() {
             animate="show"
             className="w-full max-w-md"
           >
-            <div className="relative bg-[#151515] rounded-2xl p-8 text-center shadow-xl">
+            <div className="bg-[#151515] rounded-2xl p-8 text-center shadow-xl">
 
               <motion.img
                 variants={item}
@@ -103,33 +120,24 @@ export default function Home() {
                 I am eager to learn new technologies and grow as a web developer.
               </motion.p>
 
-             <motion.div variants={item} className="mt-6 flex flex-col gap-3">
-  {/* VIEW CV */}
-  <a
-    href="/cv.pdf"
-    target="_blank"
-    className="py-2 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition"
-  >
-    View CV
-  </a>
+              <motion.div variants={item} className="mt-6 flex flex-col gap-3">
+                <a href="/cv.pdf" target="_blank" className="py-2 rounded-lg bg-white text-black font-semibold">
+                  View CV
+                </a>
 
-  {/* DOWNLOAD CV */}
-  <a
-    href="/cv.pdf"
-    download
-    className="py-2 rounded-lg border border-gray-700 text-white hover:bg-gray-800 transition"
-  >
-    Download CV
-  </a>
+                <a href="/cv.pdf" download className="py-2 rounded-lg border border-gray-700 text-white">
+                  Download CV
+                </a>
 
-  {/* EMAIL */}
-  <a
-    href="mailto:gnara8817@gmail.com?subject=Portfolio%20Contact"
-    className="py-2 rounded-lg border border-gray-700 text-white hover:bg-gray-800 transition"
-  >
-    Email Me
-  </a>
-</motion.div>
+                <a href="mailto:gnara8817@gmail.com" className="py-2 rounded-lg border border-gray-700 text-white">
+                  Email Me
+                </a>
+
+                <a href="/blog" className="py-2 rounded-lg border border-gray-700 text-white">
+                  Blog
+                </a>
+              </motion.div>
+
             </div>
           </motion.div>
         )}
