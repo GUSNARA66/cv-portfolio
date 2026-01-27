@@ -133,9 +133,7 @@ export default function Home() {
                   Email Me
                 </a>
 
-                <a href="/blog" className="py-2 rounded-lg border border-gray-700 text-white">
-                  Blog
-                </a>
+               
               </motion.div>
 
             </div>

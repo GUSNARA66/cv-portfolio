@@ -1,5 +1,4 @@
 import { blogs } from "@/data/blogs";
-import { notFound } from "next/navigation";
 
 export default function BlogDetail({ params }) {
   const blog = blogs.find((b) => b.slug === params.slug);
