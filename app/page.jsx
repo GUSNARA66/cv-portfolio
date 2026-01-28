@@ -121,21 +121,40 @@ export default function Home() {
               </motion.p>
 
               <motion.div variants={item} className="mt-6 flex flex-col gap-3">
-                <a href="/cv.pdf" target="_blank" className="py-2 rounded-lg bg-white text-black font-semibold">
-                  View CV
-                </a>
+  {/* VIEW CV */}
+  <a
+    href="/cv.pdf"
+    target="_blank"
+    className="py-2 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition"
+  >
+    View CV
+  </a>
 
-                <a href="/cv.pdf" download className="py-2 rounded-lg border border-gray-700 text-white">
-                  Download CV
-                </a>
+  {/* DOWNLOAD CV */}
+  <a
+    href="/cv.pdf"
+    download
+    className="py-2 rounded-lg border border-gray-700 text-white hover:bg-gray-800 transition"
+  >
+    Download CV
+  </a>
 
-                <a href="mailto:gnara8817@gmail.com" className="py-2 rounded-lg border border-gray-700 text-white">
-                  Email Me
-                </a>
+  {/* EMAIL */}
+  <a
+    href="mailto:gnara8817@gmail.com"
+    className="py-2 rounded-lg border border-gray-700 text-white hover:bg-gray-800 transition"
+  >
+    Email Me
+  </a>
 
-               
-              </motion.div>
-
+  {/* BLOG */}
+  <a
+    href="/blog"
+    className="py-2 rounded-lg border border-gray-700 text-white hover:bg-gray-800 transition"
+  >
+    Blog
+  </a>
+</motion.div>
             </div>
           </motion.div>
         )}

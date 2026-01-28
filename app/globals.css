@@ -38,3 +38,15 @@ body {
 .animate-fade-in {
   animation: fadeIn 0.8s ease-out forwards;
 }
+::selection {
+  background: #ffffff;
+  color: #000000;
+}
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: white;
+  z-index: 50;
+}
