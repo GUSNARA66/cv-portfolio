@@ -112,38 +112,42 @@ export default function Home() {
 
                 {/* BUTTONS */}
                 <motion.div
-                  variants={item}
-                  className="mt-6 grid grid-cols-2 gap-3"
-                >
-                  <a
-                    href="/blog"
-                    className="rounded-lg bg-neutral-800 py-2 text-sm hover:bg-neutral-700 transition text-center"
+                 variants={item}
+                   className="mt-6 grid grid-cols-2 gap-3"
                   >
-                    Blog
-                  </a>
 
                   <a
-                    href="/cv"
-                    className="rounded-lg bg-neutral-800 py-2 text-sm hover:bg-neutral-700 transition text-center"
-                  >
-                    View CV
-                  </a>
+                   href="/blog"
+                      className="bg-white/10 hover:bg-white/20 transition rounded-xl p-3 text-center"
+                      >
+                         Blog
+                          </a>
 
-                  <a
-                    href="/cv.pdf"
-                    target="_blank"
-                    className="rounded-lg bg-neutral-800 py-2 text-sm hover:bg-neutral-700 transition text-center"
-                  >
-                    Download CV
-                  </a>
+                           <a
+                        href="/cv.pdf"
+                        target="_blank"
+                        className="bg-white/10 hover:bg-white/20 transition rounded-xl p-3 text-center"
+                         >
+                         View CV
+                          </a>
 
-                  <a
+                     <a
+                     href="/cv.pdf"
+                     download
+                     className="bg-white/10 hover:bg-white/20 transition rounded-xl p-3 text-center"
+                      >
+                       Download CV
+                        </a>
+
+                     <a
                     href="mailto:gnara8817@gmail.com"
-                    className="rounded-lg bg-neutral-800 py-2 text-sm hover:bg-neutral-700 transition text-center"
-                  >
-                    Email Me
-                  </a>
-                </motion.div>
+                      className="bg-white/10 hover:bg-white/20 transition rounded-xl p-3 text-center"
+                     >
+                         Email Me
+                    </a>
+
+                     </motion.div>
+
               </div>
             </motion.div>
 
