@@ -22,7 +22,7 @@ const item = {
 };
 
 export default function Home() {
-  const fullText = "Hi, welcome to my portfolio 👋";
+  const fullText = "Hi, I'm a Junior Web Developer, You can call me GusNara 👋";
   const [typedText, setTypedText] = useState("");
   const [showIntro, setShowIntro] = useState(true);
 
@@ -34,7 +34,7 @@ export default function Home() {
       if (index > fullText.length) clearInterval(typing);
     }, 70);
 
-    const timer = setTimeout(() => setShowIntro(false), 2600);
+    const timer = setTimeout(() => setShowIntro(false), 5000);
     return () => {
       clearInterval(typing);
       clearTimeout(timer);
@@ -58,7 +58,7 @@ export default function Home() {
                 <span className="animate-pulse">|</span>
               </h1>
               <p className="text-gray-400 mt-2">
-                I’m Gusnara, Junior Web Developer
+               Junior Web Developer
               </p>
             </div>
           </motion.div>
@@ -79,7 +79,7 @@ export default function Home() {
                 />
 
                 <motion.h1 variants={item} className="text-2xl font-bold mt-4">
-                  Gusnara
+                  GusNara
                 </motion.h1>
 
                 <motion.p variants={item} className="text-gray-400">
