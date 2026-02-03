@@ -25,13 +25,13 @@ export default function Home() {
   const fullText = "Hi, I'm a Junior Web Developer, You can call me GusNara 👋";
   const [typedText, setTypedText] = useState("");
   const [showIntro, setShowIntro] = useState(true);
-
+ 
   useEffect(() => {
     let index = 0;
     const typing = setInterval(() => {
       setTypedText(fullText.slice(0, index));
       index++;
-      if (index > fullText.length) clearInterval(typing);
+      if (index > fullText.length) clearInterval(typing);              
     }, 70);
 
     const timer = setTimeout(() => setShowIntro(false), 5000);
@@ -83,7 +83,7 @@ export default function Home() {
                 </motion.h1>
 
                 <motion.p variants={item} className="text-gray-400">
-                  Junior Web Developer • Next.js • Tailwind CSS
+                  Junior Web Developer 
                 </motion.p>
 
                 <motion.div
