@@ -8,41 +8,53 @@ export default function AnimeBackground() {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    resize();
+    window.addEventListener("resize", resize);
 
     let stars = [];
-    let dust = [];
+    let sakura = [];
     let meteors = [];
     let lightning = [];
+    let explosions = [];
     let angle = 0;
     let mouse = { x: 0, y: 0 };
+    let scrollY = 0;
 
     window.addEventListener("mousemove", (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
     });
 
-    // ===== STARS =====
-    for (let i = 0; i < 160; i++) {
+    window.addEventListener("scroll", () => {
+      scrollY = window.scrollY * 0.15;
+    });
+
+    // ===== STAR FIELD =====
+    for (let i = 0; i < 170; i++) {
       stars.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         size: Math.random() * 1.6 + 0.3,
-        speedX: Math.random() * 0.3 - 0.15,
-        speedY: Math.random() * 0.3 - 0.15,
+        speedX: Math.random() * 0.2 - 0.1,
+        speedY: Math.random() * 0.2 - 0.1,
         opacity: Math.random(),
         blink: Math.random() * 0.02 + 0.01,
       });
     }
 
-    // ===== COSMIC DUST =====
-    for (let i = 0; i < 80; i++) {
-      dust.push({
+    // ===== SAKURA PARTICLES =====
+    for (let i = 0; i < 60; i++) {
+      sakura.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         size: Math.random() * 3 + 1,
-        opacity: Math.random() * 0.25,
+        speed: Math.random() * 0.6 + 0.2,
+        rot: Math.random() * 360,
       });
     }
 
@@ -51,90 +63,62 @@ export default function AnimeBackground() {
         x: Math.random() * canvas.width,
         y: 0,
         len: Math.random() * 140 + 80,
-        speed: Math.random() * 9 + 7,
+        speed: Math.random() * 7 + 6,
       });
     }
 
     function createLightning() {
       lightning.push({
         x: Math.random() * canvas.width,
-        life: 8,
+        life: 6,
       });
     }
 
-    setInterval(createMeteor, 2200);
-    setInterval(createLightning, 5000);
-
-    function drawGrid() {
-      ctx.strokeStyle = "rgba(60,90,160,0.05)";
-      for (let x = 0; x < canvas.width; x += 70) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, canvas.height);
-        ctx.stroke();
+    function createExplosion(x, y) {
+      for (let i = 0; i < 20; i++) {
+        explosions.push({
+          x,
+          y,
+          dx: Math.random() * 4 - 2,
+          dy: Math.random() * 4 - 2,
+          life: 20,
+        });
       }
     }
 
-    function drawNebula() {
-      const g = ctx.createRadialGradient(
-        canvas.width / 2,
-        canvas.height / 2,
-        50,
-        canvas.width / 2,
-        canvas.height / 2,
-        canvas.width * 0.9
-      );
+    canvas.addEventListener("click", (e) => {
+      createExplosion(e.clientX, e.clientY);
+    });
 
-      g.addColorStop(0, "rgba(40,70,150,0.2)");
-      g.addColorStop(0.5, "rgba(20,40,90,0.14)");
-      g.addColorStop(1, "rgba(0,0,0,0)");
-
-      ctx.fillStyle = g;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-
-    function drawAurora() {
-      ctx.fillStyle = "rgba(80,160,255,0.05)";
-      ctx.fillRect(
-        0,
-        canvas.height * 0.6 +
-          Math.sin(angle) * 20,
-        canvas.width,
-        120
-      );
-    }
+    setInterval(createMeteor, 2600);
+    setInterval(createLightning, 6000);
 
     function drawGalaxySwirl() {
       angle += 0.002;
 
-      const cx = canvas.width / 2 + (mouse.x - canvas.width / 2) * 0.02;
-      const cy = canvas.height / 2 + (mouse.y - canvas.height / 2) * 0.02;
+      const cx = canvas.width / 2 + (mouse.x - canvas.width / 2) * 0.03;
+      const cy = canvas.height / 2 + (mouse.y - canvas.height / 2) * 0.03;
 
-      for (let i = 0; i < 45; i++) {
+      for (let i = 0; i < 40; i++) {
         const r = i * 12;
         const x = cx + Math.cos(angle + i) * r;
-        const y = cy + Math.sin(angle + i) * r;
+        const y = cy + Math.sin(angle + i) * r + scrollY;
 
-        ctx.fillStyle = `rgba(80,120,255,0.04)`;
+        ctx.fillStyle = `rgba(80,120,255,0.045)`;
         ctx.beginPath();
-        ctx.arc(x, y, 38, 0, Math.PI * 2);
+        ctx.arc(x, y, 36, 0, Math.PI * 2);
         ctx.fill();
       }
     }
 
-    function drawPlanet() {
-      const x = canvas.width * 0.8;
-      const y = canvas.height * 0.25;
+    function drawAnimeSilhouette() {
+      const x = canvas.width * 0.12;
+      const y = canvas.height * 0.75 + scrollY * 0.3;
 
-      ctx.fillStyle = "rgba(40,90,200,0.3)";
+      ctx.fillStyle = "rgba(60,90,160,0.12)";
       ctx.beginPath();
-      ctx.arc(x, y, 80, 0, Math.PI * 2);
+      ctx.arc(x, y, 90, 0, Math.PI * 2);
       ctx.fill();
-
-      ctx.strokeStyle = "rgba(100,150,255,0.2)";
-      ctx.beginPath();
-      ctx.ellipse(x, y, 120, 40, angle, 0, Math.PI * 2);
-      ctx.stroke();
     }
 
     function drawStars() {
@@ -155,6 +139,35 @@ export default function AnimeBackground() {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
+      });
+    }
+
+    function drawSakura() {
+      sakura.forEach((s) => {
+        s.y += s.speed;
+        s.rot += 0.5;
+
+        if (s.y > canvas.height) s.y = 0;
+
+        ctx.fillStyle = "rgba(255,170,200,0.35)";
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+
+    function drawExplosions() {
+      explosions.forEach((e, i) => {
+        ctx.fillStyle = "rgba(120,180,255,0.6)";
+        ctx.beginPath();
+        ctx.arc(e.x, e.y, 2, 0, Math.PI * 2);
+        ctx.fill();
+
+        e.x += e.dx;
+        e.y += e.dy;
+        e.life--;
+
+        if (e.life <= 0) explosions.splice(i, 1);
       });
     }
 
@@ -186,34 +199,22 @@ export default function AnimeBackground() {
       });
     }
 
-    function drawWarp() {
-      ctx.fillStyle = "rgba(120,170,255,0.02)";
-      ctx.fillRect(
-        mouse.x - 60,
-        mouse.y - 60,
-        120,
-        120
-      );
-    }
-
     let last = 0;
 
     function animate(t) {
       const delta = t - last;
       last = t;
 
-      if (delta < 18) {
+      if (delta < 20) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        drawGrid();
-        drawNebula();
-        drawAurora();
         drawGalaxySwirl();
-        drawPlanet();
+        drawAnimeSilhouette();
         drawStars();
+        drawSakura();
         drawMeteors();
         drawLightning();
-        drawWarp();
+        drawExplosions();
       }
 
       requestAnimationFrame(animate);
@@ -221,10 +222,9 @@ export default function AnimeBackground() {
 
     animate(0);
 
-    window.addEventListener("resize", () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
+    return () => {
+      window.removeEventListener("resize", resize);
+    };
   }, []);
 
   return (

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaInstagram, FaWhatsapp, FaEnvelope } from "react-icons/fa";
 import AnimeBackground from "./components/AnimeBackground";
+import ThemeToggle from "./components/ThemeToggle";
 
 
 
@@ -65,6 +66,7 @@ const [runningText, setRunningText] = useState("");
   return (
   <main className="min-h-screen text-white relative">
     <AnimeBackground/>
+    <ThemeToggle />
     <AnimatePresence mode="wait">
 
         {showIntro ? (
@@ -314,7 +316,7 @@ className={`w-12 mx-auto mb-3 ${s.invert ? "invert" : ""}`}
 <div className="grid grid-cols-3 gap-4 text-center">
 
 <div className="bg-neutral-900 p-4 rounded-xl">
-  <h3 className="text-2xl font-bold text-blue-400">3</h3>
+  <h3 className="text-2xl font-bold text-blue-400">2</h3> 
   <p className="text-gray-400 text-sm">Months Learning</p>
 </div>
 
@@ -371,6 +373,22 @@ className={`w-12 mx-auto mb-3 ${s.invert ? "invert" : ""}`}
     transform: translateX(-100%);
   }
 }
+  body[data-theme="purple"] {
+  --glow: rgba(180,90,255,0.4);
+}
+
+body[data-theme="blue"] {
+  --glow: rgba(90,160,255,0.4);
+}
+
+body[data-theme="dark"] {
+  --glow: rgba(120,120,120,0.3);
+}
+
+.card:hover {
+  box-shadow: 0 0 25px var(--glow);
+}
+
 `}</style>
     </main>
   );
