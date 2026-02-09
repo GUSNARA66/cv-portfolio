@@ -5,8 +5,6 @@ import { FaInstagram, FaWhatsapp, FaEnvelope } from "react-icons/fa";
 import AnimeBackground from "./components/AnimeBackground";
 import ThemeToggle from "./components/ThemeToggle";
 
-
-
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -26,47 +24,31 @@ export default function Home() {
 
   const [typedText, setTypedText] = useState("");
   const [showIntro, setShowIntro] = useState(true);
- const typeText =
-"Hi! My name is GusNara, I'm a student and a Junior Web Developer who has been learning programming for about 2 months. I’m interested in all parts of web development, from designing interfaces, creating animations, writing frontend logic, until understanding how the backend works. I enjoy exploring Next.js, React, Tailwind CSS, and slowly moving toward fullstack development. Even though I'm still at school and just starting my journey, I always try to code every day, build small projects, fix errors, and learn from them. My dream is to become a professional fullstack developer who can create useful applications, solve real problems, and work with amazing teams in the future 🚀";
 
-
-
-const [runningText, setRunningText] = useState("");
-
+  // ===== INTRO TYPING EFFECT (BAGIAN ATAS) =====
   useEffect(() => {
-  // INTRO TEXT
-  let index = 0;
-  const typing = setInterval(() => {
-    setTypedText(fullText.slice(0, index));
-    index++;
-    if (index > fullText.length) clearInterval(typing);
-  }, 70);
+    let index = 0;
 
-  const timer = setTimeout(() => setShowIntro(false), 4500);
+    const typing = setInterval(() => {
+      setTypedText(fullText.slice(0, index));
+      index++;
+      if (index > fullText.length) clearInterval(typing);
+    }, 70);
 
-  // TYPEWRITER BENERAN
-  let i = 0;
-  const typeInterval = setInterval(() => {
-    setRunningText(typeText.slice(0, i));
-    i++;
+    const timer = setTimeout(() => setShowIntro(false), 4500);
 
-    if (i > typeText.length) {
-      clearInterval(typeInterval);
-    }
-  }, 60);
-
-  return () => {
-    clearInterval(typing);
-    clearTimeout(timer);
-    clearInterval(typeInterval);
-  };
-}, []);
-
+    return () => {
+      clearInterval(typing);
+      clearTimeout(timer);
+    };
+  }, []);
 
   return (
   <main className="min-h-screen text-white relative">
+
     <AnimeBackground/>
     <ThemeToggle />
+
     <AnimatePresence mode="wait">
 
         {showIntro ? (
@@ -121,230 +103,144 @@ const [runningText, setRunningText] = useState("");
     <motion.p variants={item} className="text-gray-400">
       Junior Web Developer
     </motion.p>
-    <motion.div variants={item} className="mt-2 text-sm text-gray-400">
-  {runningText}
-  <span className="animate-pulse">|</span>
-</motion.div>
+
+{/* ===== DESKRIPSI ANIMASI MUNCUL BIASA ===== */}
+<motion.p
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1 }}
+  className="mt-2 text-sm text-gray-400"
+>
+Hi! My name is GusNara, I'm a student and a Junior Web Developer who has been learning programming for about 2 months. I’m interested in all parts of web development, from designing interfaces, creating animations, writing frontend logic, until understanding how the backend works. I enjoy exploring Next.js, React, Tailwind CSS, and slowly moving toward fullstack development. Even though I'm still at school and just starting my journey, I always try to code every day, build small projects, fix errors, and learn from them. My dream is to become a professional fullstack developer who can create useful applications, solve real problems, and work with amazing teams in the future 🚀
+</motion.p>
 
     <motion.div variants={item} className="grid grid-cols-2 gap-3 mt-6">
       <a href="/blog" className="btn">Blog</a>
       <a href="/cv.pdf" target="_blank" className="btn">View CV</a>
       <a href="/cv.pdf" download className="btn col-span-2 mx-auto w-1/2">
-  Download CV
-</a>
-
+        Download CV
+      </a>
     </motion.div>
   </div>
 </motion.div>
 
-{/* ================= ABOUT ================= */}
-<section id="about" className="max-w-5xl mx-auto mt-24 px-4">
-
-<h2 className="text-3xl font-bold mb-4">About Me</h2>
-
-<div className="bg-neutral-900 rounded-xl p-8 md:p-10 leading-relaxed text-gray-300 space-y-4">
-
-<p className="mb-4">
-Hello! I’m <span className="text-white font-semibold">Igusti Ngurah Prayatna Rasendriya Kadwastana</span>, 
-You can call Me <span className="text-white font-semibold">GusNara</span>.  
-A passionate Junior Web Developer focused on building modern, responsive,  
-and visually appealing web applications using  
-<span className="text-white"> Next.js, React, and Tailwind CSS</span>.
+{/* ================= ABOUT ================= */} 
+<p className="text-gray-300 font-semibold leading-loose tracking-wide text-[15px] text-justify"> </p>
+<section id="about" className="max-w-5xl mx-auto mt-24 px-4"> 
+  <h2 className="text-3xl font-bold mb-4">About Me</h2> 
+  <div className="bg-neutral-900 rounded-xl p-8 md:p-10 leading-relaxed text-gray-300 space-y-4"> 
+   <p className="mb-4 text-gray-300 leading-loose tracking-wide">
+  Hello! I’m{" "}
+  <span className="text-white font-semibold">
+    Igusti Ngurah Prayatna Rasendriya Kadwastana
+  </span>,{" "}
+  You can call Me{" "}
+  <span className="text-white font-semibold">GusNara</span>.  
+  I am a passionate Junior Web Developer who is currently still at school  
+  and has been learning programming for around two months.  
+  Even in a short time, I have discovered that coding is not just about  
+  writing lines of code, but about creating something meaningful from ideas.
 </p>
 
-
-<p className="mb-4">
-My journey in programming started from simple curiosity —  
-I wondered how websites could be interactive and beautiful at the same time.  
-Since then, I have been learning every day, experimenting with UI design,  
-animations, and frontend logic.
+<p className="mb-4 text-gray-300 leading-loose tracking-wide">
+  My journey began from simple curiosity — I often asked myself  
+  how websites could look beautiful, move smoothly, and respond to user actions.  
+  That curiosity pushed me to start learning HTML, CSS, and JavaScript,  
+  and later exploring modern technologies like{" "}
+  <span className="text-white font-semibold">
+    React, Next.js, and Tailwind CSS
+  </span>.  
+  Step by step, I started to understand how frontend and backend  
+  work together to build complete applications.
 </p>
 
-<p className="mb-4">
-I enjoy transforming ideas into real digital products,  
-paying attention to detail, performance, and user experience.  
-For me, coding is not only about writing syntax,  
-but about solving problems creatively.
+<p className="mb-4 text-gray-300 leading-loose tracking-wide">
+  I enjoy designing user interfaces, creating small animations,  
+  structuring components, and solving errors that appear during development.  
+  Sometimes bugs make me confused, but solving them gives me a strong feeling  
+  of achievement. For me, every error is a lesson,  
+  and every project — no matter how small — is progress.
 </p>
 
-<p className="mb-4">
-Right now I’m focusing on mastering Frontend Development,  
-especially React ecosystem, component architecture,  
-and clean code structure.
+<p className="mb-4 text-gray-300 leading-loose tracking-wide">
+  Right now I am focusing on improving my frontend skills,  
+  learning clean code structure, responsive design, and basic backend logic  
+  so that in the future I can become a{" "}
+  <span className="text-white font-semibold">
+    Fullstack Developer
+  </span>.  
+  I love exploring new tools, watching tutorials, reading documentation,  
+  and practicing by building personal projects.
 </p>
 
-<p>
-I am open to internships, freelance projects,  
-and collaboration opportunities.  
-Let’s build something amazing together 🚀
+<p className="mb-4 text-gray-300 leading-loose tracking-wide">
+  My goal is not only to be able to code,  
+  but to create applications that are useful for other people,  
+  comfortable to use, and visually attractive.  
+  I believe consistency is more important than speed,  
+  and I try to code a little bit every day to get better than yesterday.
 </p>
 
+<p className="text-gray-300 leading-loose tracking-wide">
+  I am open to internships, freelance projects,  
+  mentoring opportunities, and collaboration with other developers.  
+  Let’s learn, grow, and build something amazing together 🚀
+</p>
 </div>
-</section>
+  </section>
 
-{/* ================= SKILLS ================= */}
-<section id="skills" className="max-w-5xl mx-auto mt-24 px-4">
-<h2 className="text-3xl font-bold mb-6">Skills</h2>
+{/* ================= CONTACT ================= */}
+<section id="contact" className="max-w-5xl mx-auto mt-24 px-4">
 
-<div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+<h2 className="text-3xl font-bold mb-2">Contact</h2>
 
-{[
-  { name: "HTML", icon: "html5/html5-original.svg" },
-  { name: "CSS", icon: "css3/css3-original.svg" },
-  { name: "Tailwind", icon: "tailwindcss/tailwindcss-original.svg" },
-  { name: "Next.js", icon: "nextjs/nextjs-original.svg", invert: true },
-].map((s) => (
+<div className="grid md:grid-cols-3 gap-6">
 
-<div key={s.name}
-className="group bg-neutral-900 p-6 rounded-xl text-center relative hover:-translate-y-1 transition">
-
-<div className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-xl bg-blue-500/20" />
-
-<img
-src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${s.icon}`}
-className={`w-12 mx-auto mb-3 ${s.invert ? "invert" : ""}`}
-/>
-
-<p>{s.name}</p>
-</div>
-
-))}
-</div>
-</section>
-
-{/* ===== CONTACT ===== */}
-  <section id="contact" className="max-w-5xl mx-auto mt-24 px-4">
-
-  <h2 className="text-3xl font-bold mb-2">Contact</h2>
-
-  <p className="text-gray-400 mb-6">
-    Feel free to reach me anytime — let's connect!
-  </p>
-
-  <div className="grid md:grid-cols-3 gap-6">
-
-    {/* INSTAGRAM */}
-    <a
-      href="https://instagram.com/gussnarraa_"
-      target="_blank"
-      className="group relative bg-neutral-900 p-6 rounded-xl hover:-translate-y-1 transition flex items-center gap-4"
-    >
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-xl bg-pink-500/20 transition" />
-
-      <FaInstagram className="text-pink-500 text-3xl" />
-
-      <div>
-        <h3 className="font-semibold mb-1">Instagram</h3>
-        <p className="text-gray-400 text-sm">@gussnarraa_</p>
-      </div>
-    </a>
-
-    {/* WHATSAPP */}
-    <a
-      href="https://wa.me/6285810564284"
-      target="_blank"
-      className="group relative bg-neutral-900 p-6 rounded-xl hover:-translate-y-1 transition flex items-center gap-4"
-    >
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-xl bg-green-500/20 transition" />
-
-      <FaWhatsapp className="text-green-500 text-3xl" />
-
-      <div>
-        <h3 className="font-semibold mb-1">WhatsApp</h3>
-        <p className="text-gray-400 text-sm">Chat me directly</p>
-      </div>
-    </a>
-
-    {/* EMAIL */}
-    <a
-      href="mailto:gnara8817@gmail.com"
-      className="group relative bg-neutral-900 p-6 rounded-xl hover:-translate-y-1 transition flex items-center gap-4"
-    >
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-xl bg-blue-500/20 transition" />
-
-      <FaEnvelope className="text-blue-400 text-3xl" />
-
-      <div>
-        <h3 className="font-semibold mb-1">Email</h3>
-        <p className="text-gray-400 text-sm">gnara8817@gmail.com</p>
-      </div>
-    </a>
-
+<a
+  href="https://instagram.com/gussnarraa_"
+  target="_blank"
+  className="group relative bg-neutral-900 p-6 rounded-xl hover:-translate-y-1 transition flex items-center gap-4"
+>
+  <FaInstagram className="text-pink-500 text-3xl" />
+  <div>
+    <h3 className="font-semibold mb-1">Instagram</h3>
+    <p className="text-gray-400 text-sm">@gussnarraa_</p>
   </div>
-</section>
+</a>
 
-
-{/* ===== WHAT I DO ===== */}
-<section className="max-w-5xl mx-auto mt-24 px-4">
-  <h2 className="text-3xl font-bold mb-6">What I Do</h2>
-
-  <div className="grid md:grid-cols-3 gap-6">
-
-    {[
-      {
-        title: "Frontend Development",
-        desc: "Building responsive and interactive interfaces using React, Next.js and Tailwind."
-      },
-      {
-        title: "UI Design",
-        desc: "Designing clean, modern and user friendly layouts with good UX principles."
-      },
-      {
-        title: "Web Performance",
-        desc: "Optimizing website speed, SEO and accessibility for better experience."
-      },
-    ].map((i) => (
-
-      <div
-        key={i.title}
-        className="group relative bg-neutral-900 p-6 rounded-xl hover:-translate-y-1 transition"
-      >
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-xl bg-purple-500/20 transition" />
-
-        <h3 className="font-semibold mb-2">{i.title}</h3>
-        <p className="text-gray-400 text-sm">{i.desc}</p>
-      </div>
-
-    ))}
-
+<a
+  href="https://wa.me/6285810564284"
+  target="_blank"
+  className="group relative bg-neutral-900 p-6 rounded-xl hover:-translate-y-1 transition flex items-center gap-4"
+>
+  <FaWhatsapp className="text-green-500 text-3xl" />
+  <div>
+    <h3 className="font-semibold mb-1">WhatsApp</h3>
   </div>
-</section>
+</a>
 
-{/* ===== STATS ===== */}
-<section className="max-w-5xl mx-auto mt-20 px-4">
-
-<div className="grid grid-cols-3 gap-4 text-center">
-
-<div className="bg-neutral-900 p-4 rounded-xl">
-  <h3 className="text-2xl font-bold text-blue-400">2</h3> 
-  <p className="text-gray-400 text-sm">Months Learning</p>
-</div>
-
-<div className="bg-neutral-900 p-4 rounded-xl">
-  <h3 className="text-2xl font-bold text-blue-400">0</h3>
-  <p className="text-gray-400 text-sm">Projects</p>
-</div>
-
-<div className="bg-neutral-900 p-4 rounded-xl">
-  <h3 className="text-2xl font-bold text-blue-400">∞</h3>
-  <p className="text-gray-400 text-sm">Motivation</p>
-</div>
+<a
+  href="mailto:gnara8817@gmail.com"
+  className="group relative bg-neutral-900 p-6 rounded-xl hover:-translate-y-1 transition flex items-center gap-4"
+>
+  <FaEnvelope className="text-blue-400 text-3xl" />
+  <div>
+    <h3 className="font-semibold mb-1">Email</h3>
+  </div>
+</a>
 
 </div>
 </section>
 
-{/* ===== FOOTER ===== */}
 <footer className="max-w-5xl mx-auto mt-24 px-4 text-center pb-10">
-
 <p className="text-gray-500 text-sm">
 © 2025 GusNara — Junior Web Developer 
 </p>
-
 </footer>
 
-          </div>
-        )}
-      </AnimatePresence>
+</div>
+)}
+</AnimatePresence>
 
 <style jsx>{`
 .btn {
@@ -357,39 +253,8 @@ className={`w-12 mx-auto mb-3 ${s.invert ? "invert" : ""}`}
 .btn:hover {
   background:#222;
 }
-
-/* ANIMASI TEKS BERJALAN */
-.animate-marquee {
-  display: inline-block;
-  padding-left: 100%;
-  animation: marquee 18s linear infinite;
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-}
-  body[data-theme="purple"] {
-  --glow: rgba(180,90,255,0.4);
-}
-
-body[data-theme="blue"] {
-  --glow: rgba(90,160,255,0.4);
-}
-
-body[data-theme="dark"] {
-  --glow: rgba(120,120,120,0.3);
-}
-
-.card:hover {
-  box-shadow: 0 0 25px var(--glow);
-}
-
 `}</style>
-    </main>
-  );
+
+</main>
+);
 }
