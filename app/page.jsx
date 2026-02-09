@@ -337,7 +337,7 @@ className={`w-12 mx-auto mb-3 ${s.invert ? "invert" : ""}`}
 <footer className="max-w-5xl mx-auto mt-24 px-4 text-center pb-10">
 
 <p className="text-gray-500 text-sm">
-© 2025 GusNara — Built with Next.js & Tailwind
+© 2025 GusNara — Junior Web Developer 
 </p>
 
 </footer>
