@@ -104,7 +104,7 @@ export default function AnimeBackground() {
         const x = cx + Math.cos(angle + i) * r;
         const y = cy + Math.sin(angle + i) * r + scrollY;
 
-        ctx.fillStyle = `rgba(80,120,255,0.045)`;
+       ctx.fillStyle = "rgba(0,242,255,0.05)";
         ctx.beginPath();
         ctx.arc(x, y, 36, 0, Math.PI * 2);
         ctx.fill();

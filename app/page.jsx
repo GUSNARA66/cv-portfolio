@@ -60,7 +60,7 @@ export default function Home() {
             className="min-h-screen flex items-center justify-center text-center"
           >
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold">
+              <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text">
                 {typedText}
                 <span className="animate-pulse">|</span>
               </h1>
@@ -88,13 +88,14 @@ export default function Home() {
   animate="show"
   className="max-w-md mx-auto pt-28"
 >
-  <div className="bg-[#111] rounded-2xl p-8 text-center shadow-xl border border-neutral-800">
-
+  <div className="bg-cyber cyber-hover rounded-2xl p-8 text-center transition duration-300">
     <motion.img
-      variants={item}
-      src="/profile.jpg"
-      className="w-28 h-28 mx-auto rounded-full border-4 border-neutral-700"
-    />
+  variants={item}
+  src="/profile.jpg"
+  className="w-28 h-28 mx-auto rounded-full border-4 border-neutral-700
+  animate-[pulse_3s_ease-in-out_infinite]"
+/>
+
 
     <motion.h1 variants={item} className="text-2xl font-bold mt-4">
       GusNara
@@ -128,7 +129,7 @@ Hi! My name is GusNara, I'm a student and a Junior Web Developer who has been le
 <p className="text-gray-300 font-semibold leading-loose tracking-wide text-[15px] text-justify"> </p>
 <section id="about" className="max-w-5xl mx-auto mt-24 px-4"> 
   <h2 className="text-3xl font-bold mb-4">About Me</h2> 
-  <div className="bg-neutral-900 rounded-xl p-8 md:p-10 leading-relaxed text-gray-300 space-y-4"> 
+  <div className="bg-cyber cyber-grid rounded-xl p-8 md:p-10 leading-relaxed text-gray-300 space-y-4"> 
    <p className="mb-4 text-gray-300 leading-loose tracking-wide">
   Hello! I’m{" "}
   <span className="text-white font-semibold">
@@ -189,6 +190,45 @@ Hi! My name is GusNara, I'm a student and a Junior Web Developer who has been le
 </div>
   </section>
 
+{/* ================= SKILLS ================= */}
+<section id="skills" className="max-w-5xl mx-auto mt-24 px-4">
+
+  <h2 className="text-3xl font-bold mb-6">Skills</h2>
+
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+    {[
+      { name: "HTML", icon: "html5/html5-original.svg" },
+      { name: "CSS", icon: "css3/css3-original.svg" },
+      { name: "Tailwind", icon: "tailwindcss/tailwindcss-original.svg" },
+
+      // ICON NEXT YANG BENER
+      { name: "Next.js", icon: "nextjs/nextjs-original.svg", invert: true },
+    ].map((s) => (
+
+      <div
+        key={s.name}
+        className="group bg-neutral-900 p-6 rounded-xl text-center relative hover:-translate-y-1 transition"
+      >
+
+        {/* efek glow */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-xl bg-blue-500/20 transition" />
+
+        <img
+          src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${s.icon}`}
+          className={`w-12 mx-auto mb-3 ${s.invert ? "invert" : ""}`}
+          alt={s.name}
+        />
+
+        <p className="text-gray-200">{s.name}</p>
+
+      </div>
+
+    ))}
+
+  </div>
+</section>
+
 {/* ================= CONTACT ================= */}
 <section id="contact" className="max-w-5xl mx-auto mt-24 px-4">
 
@@ -244,15 +284,56 @@ Hi! My name is GusNara, I'm a student and a Junior Web Developer who has been le
 
 <style jsx>{`
 .btn {
-  background:#181818;
+  background:#060b14;
   padding:10px;
   border-radius:10px;
   text-align:center;
-  transition:.2s;
+  transition:.3s;
+  border:1px solid rgba(0,242,255,0.2);
 }
+
 .btn:hover {
-  background:#222;
+  background:#081020;
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(0,242,255,0.4);
 }
+
+:root {
+  --cyber-blue: #00f2ff;
+  --cyber-purple: #7b2fff;
+  --dark: #05090f;
+}
+
+/* BACKGROUND CARD CYBER */
+.bg-cyber {
+  background: linear-gradient(145deg, #0a0f1a, #05090f);
+  border: 1px solid rgba(0,242,255,0.15);
+  box-shadow: 0 0 20px rgba(0,242,255,0.08);
+}
+
+/* EFEK HOVER HOLOGRAM */
+.cyber-hover:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 0 25px rgba(0,242,255,0.25),
+    inset 0 0 10px rgba(0,242,255,0.1);
+}
+
+/* TEKS NEON */
+.cyber-text {
+  background: linear-gradient(to right,#00f2ff,#7b2fff);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* GARIS GRID */
+.cyber-grid {
+  background-image:
+    linear-gradient(rgba(0,242,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,242,255,.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
 `}</style>
 
 </main>
