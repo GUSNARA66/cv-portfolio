@@ -59,7 +59,7 @@ export default function Home() {
             exit={{ opacity: 0, y: -20 }}
             className="min-h-screen flex items-center justify-center text-center"
           >
-            <div>
+            <div> 
               <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text">
                 {typedText}
                 <span className="animate-pulse">|</span>
@@ -229,6 +229,64 @@ Hi! My name is GusNara, I'm a student and a Junior Web Developer who has been le
   </div>
 </section>
 
+{/* ================= JOURNEY ================= */}
+<section className="max-w-5xl mx-auto mt-24 px-4">
+
+<h2 className="text-3xl font-bold mb-6 cyber-text">My Journey</h2>
+
+<div className="border-l border-cyan-500 pl-6 space-y-6">
+
+<div>
+  <h3 className="text-blue-400 font-semibold">2025 - Start Coding</h3>
+  <p className="text-gray-400">Study HTML CSS base</p>
+</div>
+
+<div>
+  <h3 className="text-blue-400 font-semibold">2 Month</h3>
+  <p className="text-gray-400">React, Next.js, Tailwind</p>
+</div>
+
+<div>
+  <h3 className="text-blue-400 font-semibold">Now</h3>
+  <p className="text-gray-400">Focus Fullstack</p>
+</div>
+
+</div>
+</section>
+
+{/* ================= STACK LEVEL ================= */}
+<section className="max-w-5xl mx-auto mt-24 px-4">
+
+<h2 className="text-3xl font-bold mb-6 cyber-text">Stack Level</h2>
+
+{[
+  { name: "HTML", level: "50%" },
+  { name: "CSS", level: "45%" },
+  { name: "JavaScript", level: "55%" },
+  { name: "React", level: "55%" },
+  { name: "Next.js", level: "60%" },
+].map((s) => (
+
+<div key={s.name} className="mb-4">
+
+<div className="flex justify-between text-sm">
+  <span>{s.name}</span>
+  <span>{s.level}</span>
+</div>
+
+<div className="w-full bg-neutral-800 h-2 rounded">
+  <div
+    className="bg-cyan-400 h-2 rounded"
+    style={{ width: s.level }}
+  />
+</div>
+
+</div>
+
+))}
+
+</section>
+
 {/* ================= CONTACT ================= */}
 <section id="contact" className="max-w-5xl mx-auto mt-24 px-4">
 
@@ -335,6 +393,12 @@ Hi! My name is GusNara, I'm a student and a Junior Web Developer who has been le
 }
 
 `}</style>
+<button
+onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+className="fixed bottom-6 right-6 bg-cyber p-3 rounded-full"
+>
+↑
+</button>
 
 </main>
 );
