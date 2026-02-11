@@ -260,11 +260,11 @@ Hi! My name is GusNara, I'm a student and a Junior Web Developer who has been le
 <h2 className="text-3xl font-bold mb-6 cyber-text">Stack Level</h2>
 
 {[
-  { name: "HTML", level: "50%" },
+  { name: "HTML", level: "40%" },
   { name: "CSS", level: "45%" },
-  { name: "JavaScript", level: "55%" },
-  { name: "React", level: "55%" },
-  { name: "Next.js", level: "60%" },
+  { name: "JavaScript", level: "40%" },
+  { name: "React", level: "50%" },
+  { name: "Next.js", level: "45%" },
 ].map((s) => (
 
 <div key={s.name} className="mb-4">
