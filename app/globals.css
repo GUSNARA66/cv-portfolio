@@ -53,3 +53,23 @@ body {
 html {
   scroll-behavior: smooth;
 }
+.click-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: cyan;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: pop .6s ease-out;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+} 

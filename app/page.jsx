@@ -26,6 +26,19 @@ export default function Home() {
   const [showIntro, setShowIntro] = useState(true);
 
   // ===== INTRO TYPING EFFECT (BAGIAN ATAS) =====
+ 
+ useEffect(() => {
+  window.addEventListener("click", (e) => {
+    const dot = document.createElement("div");
+    dot.className = "click-particle";
+    dot.style.left = e.pageX + "px";
+    dot.style.top = e.pageY + "px";
+    document.body.appendChild(dot);
+
+    setTimeout(() => dot.remove(), 600);
+  });
+}, []);
+
   useEffect(() => {
     let index = 0;
 
@@ -47,6 +60,7 @@ export default function Home() {
   <main className="min-h-screen text-white relative">
 
     <AnimeBackground/>
+    <div className="scanline" />
     <ThemeToggle />
 
     <AnimatePresence mode="wait">
@@ -97,8 +111,8 @@ export default function Home() {
 />
 
 
-    <motion.h1 variants={item} className="text-2xl font-bold mt-4">
-      GusNara
+    <motion.h1 variants={item} className="text-2xl font-bold mt-4 glitch">
+  GusNara
     </motion.h1>
 
     <motion.p variants={item} className="text-gray-400">
@@ -263,7 +277,7 @@ Hi! My name is GusNara, I'm a student and a Junior Web Developer who has been le
   { name: "HTML", level: "40%" },
   { name: "CSS", level: "45%" },
   { name: "JavaScript", level: "40%" },
-  { name: "React", level: "50%" },
+  { name: "React", level: "45%" },
   { name: "Next.js", level: "45%" },
 ].map((s) => (
 
@@ -341,21 +355,30 @@ Hi! My name is GusNara, I'm a student and a Junior Web Developer who has been le
 </AnimatePresence>
 
 <style jsx>{`
+
+.scanline {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+  repeating-linear-gradient(
+    to bottom,
+    rgba(0,255,255,0.02) 0px,
+    rgba(0,0,0,0.02) 2px
+  );
 .btn {
   background:#060b14;
   padding:10px;
   border-radius:10px;
   text-align:center;
-  transition:.3s;
+  transition:.2s;
   border:1px solid rgba(0,242,255,0.2);
 }
 
 .btn:hover {
-  background:#081020;
-  transform: translateY(-2px);
-  box-shadow: 0 0 15px rgba(0,242,255,0.4);
+  transform: scale(1.05) rotate(-1deg);
+  box-shadow: 0 0 15px rgba(0,242,255,0.6);
 }
-
 :root {
   --cyber-blue: #00f2ff;
   --cyber-purple: #7b2fff;
@@ -392,6 +415,36 @@ Hi! My name is GusNara, I'm a student and a Junior Web Developer who has been le
   background-size: 40px 40px;
 }
 
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: "GusNara";
+  position: absolute;
+  left: 0;
+  opacity: 0.7;
+}
+
+.glitch::before {
+  color: cyan;
+  animation: glitch 2s infinite;
+}
+
+.glitch::after {
+  color: magenta;
+  animation: glitch 1.5s infinite;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-1px, 1px); }
+  80% { transform: translate(1px, -1px); }
+  100% { transform: translate(0); }
+}
 `}</style>
 <button
 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

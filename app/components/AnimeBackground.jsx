@@ -200,7 +200,22 @@ export default function AnimeBackground() {
     }
 
     let last = 0;
+    
+    function drawMatrix() {
+  ctx.fillStyle = "rgba(0,255,170,0.04)";
+  ctx.font = "14px monospace";
 
+  for (let i = 0; i < 30; i++) {
+    const x = Math.random() * canvas.width;
+    const y = Math.random() * canvas.height;
+
+    ctx.fillText(
+      Math.random() > 0.5 ? "1" : "0",
+      x,
+      y
+    );
+  }
+}
     function animate(t) {
       const delta = t - last;
       last = t;
@@ -215,6 +230,7 @@ export default function AnimeBackground() {
         drawMeteors();
         drawLightning();
         drawExplosions();
+        drawMatrix(); 
       }
 
       requestAnimationFrame(animate);
