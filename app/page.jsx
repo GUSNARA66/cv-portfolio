@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaInstagram, FaWhatsapp, FaEnvelope } from "react-icons/fa";
 import AnimeBackground from "./components/AnimeBackground";
 import ThemeToggle from "./components/ThemeToggle";
+import Link from "next/link";
 
 const container = {
   hidden: { opacity: 0 },
@@ -87,6 +88,9 @@ export default function Home() {
           <div className="pb-20">
 
 {/* ================= NAVBAR ================= */}
+import Link from "next/link";
+
+<Link href="/portfolio">Portfolio</Link>
 <nav className="fixed top-0 w-full bg-black/80 backdrop-blur z-50 border-b border-neutral-800">
   <div className="max-w-5xl mx-auto flex justify-center gap-6 py-4 text-sm">
     <a href="#about" className="hover:text-blue-400">About</a>
@@ -112,7 +116,7 @@ export default function Home() {
 
 
     <motion.h1 variants={item} className="text-2xl font-bold mt-4 glitch">
-  GusNara
+  Gus Nara
     </motion.h1>
 
     <motion.p variants={item} className="text-gray-400">
