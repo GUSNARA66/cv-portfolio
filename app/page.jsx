@@ -26,6 +26,30 @@ export default function Home() {
   const [typedText, setTypedText] = useState("");
   const [showIntro, setShowIntro] = useState(true);
 
+ const [showNav, setShowNav] = useState(true);
+const [scrolled, setScrolled] = useState(false);
+
+useEffect(() => {
+  let lastScroll = 0;
+
+  const handleScroll = () => {
+    const currentScroll = window.scrollY;
+
+    setScrolled(currentScroll > 50);
+
+    if (currentScroll > lastScroll) {
+      setShowNav(false); // scroll down
+    } else {
+      setShowNav(true); // scroll up
+    }
+
+    lastScroll = currentScroll;
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []); 
+
   // ===== INTRO TYPING EFFECT (BAGIAN ATAS) =====
  
  useEffect(() => {
@@ -88,14 +112,19 @@ export default function Home() {
           <div className="pb-20">
 
 {/* ================= NAVBAR ================= */}
-import Link from "next/link";
+<nav
+  className={`
+    fixed top-0 w-full z-50 transition-all duration-500
+    ${showNav ? "translate-y-0" : "-translate-y-full"}
+    ${scrolled ? "bg-black/90 backdrop-blur border-b border-cyan-500/30 shadow-lg shadow-cyan-500/10" : "bg-transparent"}
+  `}
+>
+  <div className="max-w-5xl mx-auto flex justify-center gap-8 py-4 text-sm">
 
-<Link href="/portfolio">Portfolio</Link>
-<nav className="fixed top-0 w-full bg-black/80 backdrop-blur z-50 border-b border-neutral-800">
-  <div className="max-w-5xl mx-auto flex justify-center gap-6 py-4 text-sm">
-    <a href="#about" className="hover:text-blue-400">About</a>
-    <a href="#skills" className="hover:text-blue-400">Skills</a>
-    <a href="#contact" className="hover:text-blue-400">Contact</a>
+    <a href="#about" className="nav-link">About</a>
+    <a href="#skills" className="nav-link">Skills</a>
+    <a href="#contact" className="nav-link">Contact</a>
+
   </div>
 </nav>
 
@@ -448,6 +477,30 @@ Hi! My name is GusNara, I'm a student and a Junior Web Developer who has been le
   60% { transform: translate(-1px, 1px); }
   80% { transform: translate(1px, -1px); }
   100% { transform: translate(0); }
+}
+  .nav-link {
+  position: relative;
+  padding-bottom: 4px;
+  transition: .3s;
+}
+
+.nav-link:hover {
+  color: cyan;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(to right, cyan, magenta);
+  transition: .3s;
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }
 `}</style>
 <button
