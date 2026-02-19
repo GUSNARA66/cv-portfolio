@@ -80,11 +80,33 @@ useEffect(() => {
       clearTimeout(timer);
     };
   }, []);
+   const [scrollProgress, setScrollProgress] = useState(0);
+
+useEffect(() => {
+  const handleScroll = () => {
+    const totalHeight =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+
+    const progress =
+      (window.scrollY / totalHeight) * 100;
+
+    setScrollProgress(progress);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
 
   return (
   <main className="min-h-screen text-white relative">
 
     <AnimeBackground/>
+    <div
+  className="fixed top-0 left-0 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 z-[999]"
+  style={{ width: `${scrollProgress}%` }}
+/>
+
     <div className="scanline" />
     <ThemeToggle />
 
