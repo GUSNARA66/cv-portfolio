@@ -181,7 +181,7 @@ useEffect(() => {
   transition={{ duration: 1 }}
   className="mt-2 text-sm text-gray-400"
 >
-Hi! My name is GusNara, I'm a student and a Junior Web Developer who has been learning programming for about 2 months. I’m interested in all parts of web development, from designing interfaces, creating animations, writing frontend logic, until understanding how the backend works. I enjoy exploring Next.js, React, Tailwind CSS, and slowly moving toward fullstack development. Even though I'm still at school and just starting my journey, I always try to code every day, build small projects, fix errors, and learn from them. My dream is to become a professional fullstack developer who can create useful applications, solve real problems, and work with amazing teams in the future 🚀
+Hi! My name is GusNara, I'm a student and a Junior Web Developer who has been learning programming for about 2 months. I’m interested in all parts of web development, from designing interfaces, creating animations, writing frontend logic, until understanding how the backend works. I enjoy exploring Next.js, React, Tailwind CSS, and slowly moving toward fullstack development.
 </motion.p>
 
     <motion.div variants={item} className="grid grid-cols-2 gap-3 mt-6">
@@ -224,13 +224,6 @@ Hi! My name is GusNara, I'm a student and a Junior Web Developer who has been le
   work together to build complete applications.
 </p>
 
-<p className="mb-4 text-gray-300 leading-loose tracking-wide">
-  I enjoy designing user interfaces, creating small animations,  
-  structuring components, and solving errors that appear during development.  
-  Sometimes bugs make me confused, but solving them gives me a strong feeling  
-  of achievement. For me, every error is a lesson,  
-  and every project — no matter how small — is progress.
-</p>
 
 <p className="mb-4 text-gray-300 leading-loose tracking-wide">
   Right now I am focusing on improving my frontend skills,  
@@ -251,11 +244,6 @@ Hi! My name is GusNara, I'm a student and a Junior Web Developer who has been le
   and I try to code a little bit every day to get better than yesterday.
 </p>
 
-<p className="text-gray-300 leading-loose tracking-wide">
-  I am open to internships, freelance projects,  
-  mentoring opportunities, and collaboration with other developers.  
-  Let’s learn, grow, and build something amazing together 🚀
-</p>
 </div>
   </section>
 
